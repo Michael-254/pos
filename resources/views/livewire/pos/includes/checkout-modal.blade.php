@@ -29,7 +29,7 @@
                             <input type="hidden" value="{{ $global_discount }}" name="discount_percentage">
                             <input type="hidden" value="{{ $shipping }}" name="shipping_amount">
                             <div class="form-row">
-                                @if ($customer != '' && $customer->is_loyalty_enrolled == 'Yes')
+                                @if ($customer_id != '' && $customer->is_loyalty_enrolled == 'Yes')
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <h6 class="text-danger">
