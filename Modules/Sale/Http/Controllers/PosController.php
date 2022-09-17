@@ -18,7 +18,8 @@ use Modules\Sale\Http\Requests\StorePosSaleRequest;
 class PosController extends Controller
 {
 
-    public function index() {
+    public function index()
+    {
         Cart::instance('sale')->destroy();
 
         $customers = Customer::all();
@@ -28,7 +29,8 @@ class PosController extends Controller
     }
 
 
-    public function store(StorePosSaleRequest $request) {
+    public function store(StorePosSaleRequest $request)
+    {
         DB::transaction(function () use ($request) {
             $due_amount = $request->total_amount - $request->paid_amount;
 
@@ -40,11 +42,12 @@ class PosController extends Controller
                 $payment_status = 'Paid';
             }
 
+            $customer = Customer::findOrFail($request->customer_id);
             $sale = Sale::create([
                 'date' => now()->format('Y-m-d'),
                 'reference' => 'PSL',
                 'customer_id' => $request->customer_id,
-                'customer_name' => Customer::findOrFail($request->customer_id)->customer_name,
+                'customer_name' => $customer->customer_name,
                 'tax_percentage' => $request->tax_percentage,
                 'discount_percentage' => $request->discount_percentage,
                 'shipping_amount' => $request->shipping_amount * 100,
@@ -58,6 +61,11 @@ class PosController extends Controller
                 'tax_amount' => Cart::instance('sale')->tax() * 100,
                 'discount_amount' => Cart::instance('sale')->discount() * 100,
             ]);
+
+            if ($customer->is_loyalty_enrolled == 'Yes') {
+                $customer->loyalty_points += $request->paid_amount / 10;
+                $customer->save();
+            }
 
             foreach (Cart::instance('sale')->content() as $cart_item) {
                 SaleDetails::create([
@@ -85,7 +93,7 @@ class PosController extends Controller
             if ($sale->paid_amount > 0) {
                 SalePayment::create([
                     'date' => now()->format('Y-m-d'),
-                    'reference' => 'INV/'.$sale->reference,
+                    'reference' => 'INV/' . $sale->reference,
                     'amount' => $sale->paid_amount,
                     'sale_id' => $sale->id,
                     'payment_method' => $request->payment_method

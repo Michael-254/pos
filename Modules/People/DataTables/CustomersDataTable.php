@@ -57,7 +57,10 @@ class CustomersDataTable extends DataTable
             Column::make('customer_phone')
                 ->className('text-center align-middle'),
 
-            Column::make('customer_phone')
+            Column::make('is_loyalty_enrolled')
+                ->className('text-center align-middle'),
+
+            Column::make('loyalty_points')
                 ->className('text-center align-middle'),
 
             Column::computed('action')

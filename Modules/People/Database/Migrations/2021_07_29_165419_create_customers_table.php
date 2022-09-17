@@ -20,6 +20,7 @@ class CreateCustomersTable extends Migration
             $table->string('customer_phone');
             $table->string('city');
             $table->string('is_loyalty_enrolled');
+            $table->integer('loyalty_points')->nullable();
             $table->string('country');
             $table->text('address');
             $table->timestamps();

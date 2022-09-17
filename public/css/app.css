@@ -9932,7 +9932,7 @@ html:not([dir=rtl]) .c-sidebar.c-sidebar-show.c-sidebar-right.c-sidebar-fixed.c-
   background-color: #596f94 !important;
 }
 .c-sidebar .c-sidebar-footer {
-  background: rgba(0, 0, 21, 0.2);
+  background: #2eb85c;
 }
 .c-sidebar .c-sidebar-minimizer {
   background-color: rgba(0, 0, 21, 0.2);
