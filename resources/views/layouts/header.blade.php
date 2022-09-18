@@ -16,6 +16,11 @@
             <i class="bi bi-cart mr-1"></i> POS System
         </a>
     </li>
+    <li class="c-header-nav-item mr-3">
+        <a class="btn btn-success btn-pill " href="{{ route('customers.index') }}">
+            <i class="bi bi-people mr-1"></i> Loyalty Program
+        </a>
+    </li>
     @endcan
 
     @can('show_notifications')
