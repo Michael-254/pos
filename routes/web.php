@@ -14,6 +14,11 @@ Route::get('/', function () {
 
 Auth::routes(['register' => false]);
 
+Route::get('/create-symlink', function (){
+    symlink(storage_path('/app/public'), public_path('storage'));
+    echo "Symlink Created. Thanks";
+});
+
 Route::post('custom-login', [App\Http\Controllers\TestController::class, 'customLogin'])->name('login.custom'); 
 
 Route::group(['middleware' => 'auth'], function () {
