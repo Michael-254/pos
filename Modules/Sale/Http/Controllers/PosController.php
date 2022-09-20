@@ -67,7 +67,7 @@ class PosController extends Controller
                 $customer->loyalty_points += $request->paid_amount / 10;
                 $customer->save();
                 $customer->update([
-                    'loyalty_expire_date' => Carbon::today()->addMonth(1)
+                    'loyalty_expire_date' => Carbon::today()->addMonth(3)
                 ]);
             }
 

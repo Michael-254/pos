@@ -51,7 +51,7 @@ class CustomersController extends Controller
             'city'           => $request->city,
             'country'        => $request->country,
             'address'        => $request->address,
-            'loyalty_expire_date' => Carbon::today()->addMonth(1),
+            'loyalty_expire_date' => Carbon::today()->addMonth(3),
         ]);
 
         if ($request->is_loyalty_enrolled == 'Yes') {

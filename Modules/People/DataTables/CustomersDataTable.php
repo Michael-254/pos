@@ -63,6 +63,9 @@ class CustomersDataTable extends DataTable
             Column::make('loyalty_points')
                 ->className('text-center align-middle'),
 
+            Column::make('loyalty_expire_date')
+                ->className('text-center align-middle'),
+
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
