@@ -2,6 +2,7 @@
 
 namespace Modules\Sale\Http\Controllers;
 
+use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -65,6 +66,9 @@ class PosController extends Controller
             if ($customer->is_loyalty_enrolled == 'Yes') {
                 $customer->loyalty_points += $request->paid_amount / 10;
                 $customer->save();
+                $customer->update([
+                    'loyalty_expire_date' => Carbon::today()->addMonth(1)
+                ]);
             }
 
             foreach (Cart::instance('sale')->content() as $cart_item) {

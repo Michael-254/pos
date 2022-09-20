@@ -2,6 +2,7 @@
 
 namespace Modules\People\Http\Controllers;
 
+use Carbon\Carbon;
 use Modules\People\DataTables\CustomersDataTable;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -49,7 +50,8 @@ class CustomersController extends Controller
             'is_loyalty_enrolled' => $request->is_loyalty_enrolled,
             'city'           => $request->city,
             'country'        => $request->country,
-            'address'        => $request->address
+            'address'        => $request->address,
+            'loyalty_expire_date' => Carbon::today()->addMonth(1),
         ]);
 
         if ($request->is_loyalty_enrolled == 'Yes') {
