@@ -12,6 +12,8 @@ Route::get('/', function () {
     return view('auth.login');
 })->middleware('guest');
 
+Route::get('/test', 'MpesaCredentialController@index');
+
 Auth::routes(['register' => false]);
 
 Route::get('/create-symlink', function (){

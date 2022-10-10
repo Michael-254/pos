@@ -37,7 +37,8 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "Modules\\": "Modules/"
+            "Modules\\": "Modules/",
+            "Vancha\\Mpesa\\": "packages/vancha/mpesa/src/"
         },
         "files": [
             "app/Helpers/helpers.php"
